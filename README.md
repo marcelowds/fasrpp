@@ -63,7 +63,8 @@ conda activate fasr
 
 # Prepare TFRecords
 
-The training images must be converted to TFRecords format. This can be done using the dataset generation tool from Progressive Growing of GANs:
+The algorithm processes images in TFRecords format, which can be generated using [Progressive Growing of GANs](https://github.com/tkarras/progressive_growing_of_gans) using:
+
 
 ```text
 python dataset_tool.py create_from_images tfrecords_path images_path --shuffle 0
