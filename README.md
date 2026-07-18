@@ -94,11 +94,8 @@ pretrained_adaface
 
 # Pre-trained FASR++ model
 
-Download the pretrained checkpoint and place it in:
+Download our pre-trained model [here](https://drive.google.com/file/d/1fPV0w2XR-svCjqkgKnOU9qpRq6GYgnpL/view?usp=drive_link) and place it in the ```exps/checkpoints-meta``` directory.
 
-```
-exps/checkpoints-meta
-```
 
 ---
 
