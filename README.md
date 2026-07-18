@@ -61,24 +61,23 @@ conda activate fasr
 
 ---
 
-# Prepare TFRecords
+# Dataset Preparation
 
-The algorithm processes images in TFRecords format, which can be generated using [Progressive Growing of GANs](https://github.com/tkarras/progressive_growing_of_gans) using:
+## Prepare TFRecords
 
+The algorithm processes images in TFRecords format, which can be generated using [Progressive Growing of GANs](https://github.com/tkarras/progressive_growing_of_gans):
 
 ```text
 python dataset_tool.py create_from_images tfrecords_path images_path --shuffle 0
 ```
 
-A small TFRecords example containing 10 CelebA images is available in:
+A sample TFRecords dataset containing 10 CelebA images is available in:
 
 ```
 sample_imgs/tfrecords
 ```
 
----
-
-# AdaFace
+## AdaFace
 
 Download the **IR-18 CASIA-WebFace** pretrained model from AdaFace:
 
@@ -90,16 +89,15 @@ Place the downloaded checkpoint inside:
 pretrained_adaface
 ```
 
----
+## Pre-trained FASR++ model
 
-# Pre-trained FASR++ model
+Download our pre-trained model [here](https://drive.google.com/file/d/1fPV0w2XR-svCjqkgKnOU9qpRq6GYgnpL/view?usp=drive_link) and place it in:
 
-Download our pre-trained model [here](https://drive.google.com/file/d/1fPV0w2XR-svCjqkgKnOU9qpRq6GYgnpL/view?usp=drive_link) and place it in the ```exps/checkpoints-meta``` directory.
+```
+exps/checkpoints-meta
+```
 
-
----
-
-# Sample images
+## Sample images
 
 The folder `sample_imgs` contains:
 
@@ -119,33 +117,27 @@ configs/default_ve_configs.py
 configs/ve/sr_ve.py
 ```
 
-## 1. Create the TFRecords dataset
-
-```text
-python dataset_tool.py create_from_images tfrecords_path images_path --shuffle 0
-```
-
-## 2. Train the super-resolution model
+## 1. Train the super-resolution model
 
 ```text
 CUDA_VISIBLE_DEVICES=0 python3 main.py --config configs/ve/sr_ve.py --mode train --workdir exps
 ```
 
-## 3. Generate super-resolved images
+## 2. Generate super-resolved images
 
-### 3.1 Extract AdaFace features
+### 2.1 Extract AdaFace features
 
 ```text
 python extract_features_LR.py
 ```
 
-### 3.2 Combine the extracted features using the Delta network
+### 2.2 Combine the extracted features using the Delta network
 
 ```text
 python combine_delta_network.py
 ```
 
-### 3.3 Generate super-resolved images
+### 2.3 Generate super-resolved images
 
 ```text
 CUDA_VISIBLE_DEVICES=0 python3 main.py --config configs/ve/sr_ve.py --mode sr --workdir exps
@@ -157,12 +149,14 @@ CUDA_VISIBLE_DEVICES=0 python3 main.py --config configs/ve/sr_ve.py --mode sr --
 
 If you use this project, please cite:
 
-> dos Santos, M., Laroca, R., Neves, J. C. R., & Menotti, D. Robust Face Super-Resolution and Recognition Through Multi-Feature Aggregation in Diffusion Models. *Journal of the Brazilian Computer Society*, 32(1), 1457–1470, 2026.
+> dos Santos, M., Laroca, R., Neves, J. C. R., & Menotti, D. *Robust Face Super-Resolution and Recognition Through Multi-Feature Aggregation in Diffusion Models*. Journal of the Brazilian Computer Society, 32(1), 1457–1470, 2026.
 
 Journal version:
+
 https://journals-sol.sbc.org.br/index.php/jbcs/article/view/5884
 
 arXiv:
+
 https://arxiv.org/abs/2607.05702
 
 ```bibtex
