@@ -9,7 +9,7 @@ https://github.com/marcelowds/fasr
 ## Overview of the proposed method
 
 <figure>
-  <img src="https://raw.githubusercontent.com/marcelowds/fasrpp/main/fasrpp.pdf" style="width: 100%; max-width: 1000px;">
+  <img src="https://raw.githubusercontent.com/marcelowds/fasrpp/main/fasrpp.png" style="width: 100%; max-width: 1000px;">
   <figcaption align="center">
     Fig. 1. Overview of the proposed FASR++ framework.
   </figcaption>
