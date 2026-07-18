@@ -1,0 +1,25 @@
+## 1. Create the TFRecords dataset
+
+python dataset_tool.py create_from_images tfrecords_path images_path --shuffle 0
+
+
+## 2. Train the super-resolution model
+
+CUDA_VISIBLE_DEVICES=0 python3 main.py --config configs/ve/sr_ve.py --mode train --workdir exps
+
+
+## 3. Generate super-resolved images
+
+### 3.1 Extract AdaFace features from the low-resolution images
+
+python extract_features_LR.py
+
+
+### 3.2 Combine the extracted features using the Delta network
+
+python combine_delta_network.py
+
+
+### 3.3 Generate the super-resolved images
+
+CUDA_VISIBLE_DEVICES=0 python3 main.py --config configs/ve/sr_ve.py --mode sr --workdir exps
